@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+    .card {
+        @apply p-3 bg-white shadow-md rounded-md dark:bg-black dark:text-white;
+    }
+}
