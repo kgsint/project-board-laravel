@@ -14,7 +14,7 @@
             </a>
         </div>
     </header>
-
+        {{-- flash message --}}
         @if (session('status'))
             <div id="flash-message" class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
                 {{ session('status') }}
@@ -34,19 +34,16 @@
 
                 {{-- authorize view --}}
                 @can('manage', $project)
-                    <form
-                        id="delete-form"
-                        action="{{ route('projects.destroy', $project->id) }}"
-                        method="POST"
-                        class="block text-right absolute bottom-2 right-2"
-                    >
-                    @method('DELETE')
-                    @csrf
+                    {{-- delete project --}}
+                    <div class="block text-right absolute bottom-2 right-2">
                         <button
-                            onclick="confirm('Are you sure you want to delete this?')"
-                            class=" delete-project-btn text-sm text-red-500"
-                        data-id="{{ $project->id }}">Delete</button>
-                    </form>
+                            class="text-sm text-red-500 p-3"
+                            id="delete-btn"
+                            data-project="{{ json_encode($project->only(['id', 'title'])) }}"
+                        >
+                            Delete
+                        </button>
+                    </div>
                 @endcan
             </div>
         @empty
@@ -55,3 +52,7 @@
     </div>
 
 @endsection
+
+@push('script')
+    @vite(['resources/js/popup.js'])
+@endpush

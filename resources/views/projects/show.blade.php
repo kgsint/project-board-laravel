@@ -44,6 +44,13 @@
         </div>
     </header>
 
+    {{-- flash message --}}
+    @if (session('status'))
+        <div id="flash-message" class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
+            {{ session('status') }}
+      </div>
+    @endif
+
     <main>
         <div class="flex flex-col md:flex-row gap-4">
             <div class="md:w-3/4">
@@ -78,6 +85,7 @@
                         </div>
                     @endforeach
 
+                    {{-- add task --}}
                     <div class="card">
                         <form action="{{ $project->path() }}/tasks" method="POST">
                             @csrf
@@ -136,25 +144,22 @@
                     <p class="text-sm leading-6 text-gray-400 flex-1">
                         {{ $project->description }}
                     </p>
+
+                    {{-- authorize view --}}
                     @can('manage', $project)
                         {{-- delete project btn --}}
                         <button
-                            type="submit"
                             class="text-red-500
-                                    text-sm
-                                    border border-red-400 p-2
-                                    hover:bg-red-500 hover:text-white rounded-md duration-200 ease-in-out"
-                            form="deleteProjectForm"
+                            text-sm
+                            border border-red-400 p-2
+                            hover:bg-red-500 hover:text-white rounded-md duration-200 ease-in-out"
+                            id="delete-btn"
+                            data-project="{{ json_encode($project->only(['id', 'title'])) }}"
                         >
-                            Delete
+                        Delete
                         </button>
                     @endcan
 
-                    <form action="{{ route('projects.destroy', $project->id) }}" method="POST" id="deleteProjectForm" class="hidden">
-                        @method('DELETE')
-                        @csrf
-
-                    </form>
                 </div>
 
                 {{-- activity log --}}
@@ -167,6 +172,7 @@
                         @endforeach
                 </div>
 
+                {{-- authorize view --}}
                 @can('manage', $project)
                     {{-- invitation form --}}
                     <div class="card mt-3 space-y-3">
@@ -201,3 +207,6 @@
 
 @endsection
 
+@push('script')
+    @vite(['resources/js/popup.js'])
+@endpush

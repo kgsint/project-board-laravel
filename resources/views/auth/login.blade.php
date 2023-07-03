@@ -2,38 +2,46 @@
 
 @section('content')
     <div class="w-full mx-auto max-w-screen-md">
-        <form action="{{ route('login') }}" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <form action="{{ route('login') }}" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 dark:bg-black">
             @csrf
         <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-            Email
+            <label class="block text-gray-700 text-sm font-bold mb-2 dark:text-gray-400" for="username">
+                Email
             </label>
             <input
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+                    dark:bg-black
+                    dark:text-white
                     @error('email')
                     border-red-500
                     @enderror"
                     id="username"
                     type="email"
                     name="email"
-                    placeholder="Email Address">
+                    placeholder="Email Address"
+                    value="{{ old('email') }}"
+                >
 
             @error('email')
                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror
         </div>
         <div class="mb-6">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+            <label class="block text-gray-700 text-sm font-bold mb-2 dark:text-gray-400" for="password">
             Password
             </label>
             <input
-                class="shadow appearance-none border @error('password')
-                    border-red-500
-                @enderror rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                name="password"
-                id="password"
-                type="password"
-                placeholder="******************">
+                class="shadow appearance-none border
+                    dark:bg-black
+                    dark:text-white
+                    @error('password')
+                        border-red-500
+                    @enderror rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    name="password"
+                    id="password"
+                    type="password"
+                    placeholder="***************"
+                >
 
             @error('password')
                 <p class="text-red-500 text-xs italic">{{ $message }}</p>

@@ -25,6 +25,6 @@ class ProjectInviteStoreController extends Controller
 
         $project->invite($user);
 
-        return redirect($project->path());
+        return redirect($project->path())->with('status', 'Invitation sent');
     }
 }

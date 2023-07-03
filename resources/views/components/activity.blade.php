@@ -12,7 +12,7 @@
                                 "{$username} updated " . key($activity->changes['after']) :
                                 "{$username} updated a project",
 
-        'created_task' => "{$username} created , " . "<b>{$activity->subject->body}</b>",
+        'created_task' => "{$username} added a task called , " . "<b>{$activity->subject->body}</b>",
 
         'completed_task' => "{$username} completed , " . "<b>{$activity->subject->body}</b>",
 

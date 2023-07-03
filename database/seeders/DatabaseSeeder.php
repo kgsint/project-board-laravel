@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Project;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,12 +16,17 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\User::factory()->create([
             'name' => 'kgsint',
-            'email' => 'kgsint@gmail.co.uk',
+            'email' => 'kgsint@gmail.com',
         ]);
 
         \App\Models\User::factory()->create([
             'name' => 'senna',
-            'email' => 'senna@mail.com',
+            'email' => 'senna@gmail.com',
+        ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'John Doe',
+            'email' => 'johndoe@gmail.com',
         ]);
 
         $this->call([

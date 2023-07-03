@@ -55,7 +55,7 @@ class Task extends Model
         $this->activity()->create([
             'project_id' => $this->project->id,
             'description' => $description,
-            'user_id' => $this->project->user->id,
+            'user_id' => auth()->id(),
         ]);
     }
 
