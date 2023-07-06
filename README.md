@@ -19,13 +19,9 @@ copy `.env.example` file to `.env` :
 ```
 cp .env.example .env
 ```
-And migrate
-```
-php artisan migrate
-```
-To populate data :
-```
-php artisan db:seed
+Generate `APP_KEY`
+```bash
+php artisan key:generate
 ```
 To compile and hot reload, run:
 ```bash
